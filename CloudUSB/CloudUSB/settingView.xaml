@@ -1,0 +1,36 @@
+﻿<Controls:MetroWindow x:Class="CloudUSB.SettingView"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="img/system.png"
+        Title="Setting" Height="181" Width="420" Closing="SettingView_Closing" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!--setting btn mouse over-->
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--setting btn mouse over-->
+
+
+    </Window.Resources>
+    <Grid>
+        <TextBox x:Name="settingTextBox"  HorizontalAlignment="Left" Height="25" Margin="104,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" RenderTransformOrigin="0.133,0.231" IsEnabled="False"/>
+        <Button Click="settingBtn_Click" Content="open" HorizontalAlignment="Left" Margin="15,54,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="okBtn_Click" Content="OK" HorizontalAlignment="Left" Margin="323,105,0,0" VerticalAlignment="Top" Width="75" Height="24"/>
+
+    </Grid>
+</Controls:MetroWindow>

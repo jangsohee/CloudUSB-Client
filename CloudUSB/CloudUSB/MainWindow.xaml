@@ -1,0 +1,273 @@
+﻿<Controls:MetroWindow x:Class="CloudUSB.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"   
+        Name="Root" 
+                      
+        Title="CloudUSB" Icon=".\img\cuIcon.png" Height="520" Width="680" 
+                      MinHeight="470" MinWidth="630"
+                      KeyDown="Window_KeyDown"
+                      Loaded="Window_Loaded" 
+                      ContentRendered="Window_Rendered"
+                      Closing="Root_Closing">
+    <Window.Resources>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <WrapPanel IsItemsHost="True"/>
+        </ItemsPanelTemplate>
+        <!--setting btn mouse over-->
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--setting btn mouse over-->
+
+        <!--Toggle button Style-->
+        <Style x:Key="MyToggleButton" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                                <Setter Property="Background" Value="Black" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Toggle button Style-->
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="33"/>
+            <ColumnDefinition Width="33"/>
+            <ColumnDefinition Width="33"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <Style x:Key="showOnToggled" TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}" >
+                <Setter Property="Visibility" Value="Visible" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=toggleButton, Path=IsChecked}" Value="True" >
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="hideOnToggled" TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}" >
+                <Setter Property="Visibility" Value="Collapsed" />
+
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=toggleButton, Path=IsChecked}" Value="True" >
+                        <Setter Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
+
+
+
+
+        <GroupBox x:Name="GroupBox1" Header=""
+            Grid.Row="1" Grid.RowSpan="3"
+            Style="{StaticResource hideOnToggled }" Margin="30,10,30,24" Grid.ColumnSpan="12">
+            <!--Style="{StaticResource showOnToggled }" Margin="30,10,30,24" Grid.ColumnSpan="10">-->
+            <!-- Region1's content -->
+            <ListView x:Name="AllFileList" Drop="fileDropEvent" AllowDrop="True" MouseDoubleClick="AllFileList_MouseDoubleClick" SelectionMode="Single" HorizontalContentAlignment="Center" 
+                      ItemsPanel="{DynamicResource ItemsPanelTemplate1}" Margin="2"  HorizontalAlignment="Stretch" 
+                      PreviewMouseLeftButtonDown="AllFileList_PreviewMouseLeftButtonDown" MouseMove="AllFileList_MouseMove" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True" Focusable="False"  
+                      BorderBrush="#00000000" BorderThickness="0" ContextMenu="{DynamicResource ItemContextMenu}" 
+                      ContextMenuOpening="ItemRightClick" MouseDown="listViewBackgroundClick" Grid.ColumnSpan="9">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="*" MaxHeight="80" />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" x:Name="img" Source="{Binding FileIcon}" Height="32" Width="32"/>
+                            <TextBlock TextAlignment="Center" Grid.Row="1" HorizontalAlignment="Center"  Width="75" TextWrapping="Wrap" Text="{Binding FileName}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListView.Resources>
+                    <ContextMenu x:Key="ItemContextMenu" Visibility="Visible">
+                        <MenuItem Header="잘라내기" Click="ContextMenu_Cut" IsEnabled="True"/>
+                        <MenuItem Header="복사하기" Click="ContextMenu_Copy" IsEnabled="True"/>
+                        <MenuItem Header="붙여넣기" Click="ContextMenu_Paste" IsEnabled="False"/>
+                        <MenuItem Header="삭제하기" Click="ContextMenu_Delete" IsEnabled="True"/>
+                        <MenuItem Header="이름수정" Click="ContextMenu_Rename" IsEnabled="True"/>
+                        <MenuItem Header="태그설정" MouseEnter="ContextMenu_TagList" Click="ContextMenu_TagList" IsEnabled="True"/>
+                        <MenuItem Header="태그삭제" MouseEnter="ContextMenu_TagCut" IsEnabled="True"/>
+                    </ContextMenu>
+
+                </ListView.Resources>
+            </ListView>
+        </GroupBox>
+
+        <!--완성 후, GroupBox2에 showOnToggled를 hideOnToggled로 바꿔주기! -->
+        <GroupBox x:Name="GroupBox2" Header="Category"
+            Grid.Row="1" Grid.RowSpan="3"
+            Style="{StaticResource showOnToggled}" Margin="30,10,30,24" Grid.ColumnSpan="12">
+            <!--Style="{StaticResource hideOnToggled}" Margin="30,10,30,24" Grid.ColumnSpan="10">-->
+            <!-- Region2's content -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="55"/>
+
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="AllFileList2" Background="BurlyWood" BorderBrush="#00000000"  VerticalAlignment="Stretch"
+                          MouseDoubleClick="AllFileList2_MouseDoubleClick" SelectionMode="Single"
+                          HorizontalAlignment="Stretch" ItemsPanel="{DynamicResource ItemsPanelTemplate1}" Margin="2"
+                          
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True" Focusable="False"  
+                      BorderThickness="0"
+                      MouseDown="listViewBackgroundClick2" Grid.ColumnSpan="1" Grid.RowSpan="2">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32" />
+                                    <RowDefinition Height="*" MaxHeight="80" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" x:Name="img" Source="{Binding FileIcon}" Height="32" Width="32"/>
+                                <TextBlock TextAlignment="Center" Grid.Row="1" HorizontalAlignment="Center"  Width="75" TextWrapping="Wrap" Text="{Binding NickName}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListView>
+                <ListBox  Name="Category_TaglistBox"  HorizontalAlignment="Stretch" Margin="2" 
+                          Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch" 
+                          SelectionChanged="Category_TaglistBox_SelectionChanged" Background="LightSeaGreen" SelectedIndex="0" 
+                          Loaded="Category_TaglistBox_Loaded">
+                    <!--<ListBoxItem MouseDoubleClick="ListBoxItem_MouseDoubleClick"></ListBoxItem>-->
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True" >
+                                    <Setter Property="Background" Value="LightSeaGreen" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <TextBox x:Name="tagSearchBox" Grid.Row="0" Grid.Column="1" Controls:TextBoxHelper.Watermark="태그 검색" Controls:TextBoxHelper.ClearTextButton="True" Margin="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                <Button Grid.Row="0" Grid.Column="2" Content="Search" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="SearchBtn_Click" Margin="2" />
+            </Grid>
+
+        </GroupBox>
+
+        <!--Toggle Button-->
+        <ToggleButton Grid.Column="2" Style="{StaticResource MyToggleButton}" x:Name="toggleButton"  HorizontalAlignment="Center"
+                      VerticalAlignment="Bottom"  BorderBrush="White" Height="24" Width="74" Click="toggleButton_Click" Focusable="False" >
+            <ToggleButton.Background>
+                <ImageBrush ImageSource="img/off.png"/>
+            </ToggleButton.Background>
+        </ToggleButton>
+
+        <!--Default Frame-->
+        <Frame Grid.Column="1" HorizontalAlignment="Center" Height="24" Width="74" VerticalAlignment="Bottom">
+            <Frame.Background>
+                <ImageBrush ImageSource="img/default_off.png"/>
+            </Frame.Background>
+        </Frame>
+
+        <!--Category Frame-->
+        <Frame Grid.Column="3" HorizontalAlignment="Center" Height="24" Width="74" VerticalAlignment="Bottom">
+            <Frame.Background>
+                <ImageBrush ImageSource="img/category_off.png"/>
+            </Frame.Background>
+        </Frame>
+
+        <!--Tag Button-->
+        <Button Grid.Column="4" HorizontalAlignment="Center" Style="{StaticResource MyButton}" VerticalAlignment="Bottom" Height="24" Width="74" BorderBrush="White" Click="TagBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="img/tag_off.png"/>
+            </Button.Background>
+        </Button>
+
+        <!--Login Button-->
+        <Button x:Name="LoginBtn" Grid.Column="6" Style="{StaticResource MyButton}" HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" Height="24" Width="74" Click="Login_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="img/login.png"/>
+            </Button.Background>
+        </Button>
+        <!--Back Button-->
+        <Button x:Name="backButton" Grid.Column="9" Style="{StaticResource MyButton}"  HorizontalAlignment="Left"  
+                Grid.Row="1" VerticalAlignment="Bottom" Width="25" Height="25" Click="Back_Button_Click"
+                 Margin="4,0,4,33" Grid.RowSpan="2">
+            <Button.Background>
+                <ImageBrush ImageSource="img/backButton.png"/>
+            </Button.Background>
+        </Button>
+        <!--Sync Button-->
+        <Button Grid.Column="8" HorizontalAlignment="Center" Style="{StaticResource MyButton}" VerticalAlignment="Bottom" 
+        	Width="24"  Height="24" Click="syncBtn_click" FontWeight="Normal" BorderBrush="White" Margin="5,0,4,0">
+            <Button.Background>
+                <ImageBrush ImageSource="img/syncButton.jpg"/>
+            </Button.Background>
+        </Button>
+        <!--Setting Button-->
+        <Button Grid.Column="9" HorizontalAlignment="Center" Style="{StaticResource MyButton}" VerticalAlignment="Bottom" 
+                Width="25"  Click="settingBtn_Click" Height="24" FontWeight="Normal" BorderBrush="White" Margin="6,0,3,0" >
+            <Button.Background>
+                <ImageBrush ImageSource="img/system.png"/>
+            </Button.Background>
+        </Button>
+        <Button  Grid.Column="7" Width="24" Height="22" Click="History_Click" Style="{StaticResource MyButton}"  HorizontalAlignment="Center"  VerticalAlignment="Bottom" Margin="5,0,4,1">
+            <Button.Background>
+                <ImageBrush ImageSource="img/H.png"/>
+            </Button.Background>
+        </Button>
+
+
+    </Grid>
+</Controls:MetroWindow>

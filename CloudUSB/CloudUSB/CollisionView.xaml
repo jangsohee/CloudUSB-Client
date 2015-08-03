@@ -1,0 +1,70 @@
+﻿<Controls:MetroWindow x:Class="CloudUSB.CollisionView"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="동기화 작업" Icon="img/syncButton.jpg"          
+        ShowTitleBar="False" Closing="Sync_Closing" WindowTransitionsEnabled="False"
+        Height="440" Width="500" MinHeight="440" MinWidth="650" 
+                      WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ShowMinButton="False" 
+        ShowMaxRestoreButton="False" ShowSystemMenuOnRightClick="False" ResizeMode="NoResize" >
+    <Window.Resources>
+        <!--setting btn mouse over-->
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--setting btn mouse over-->
+
+
+    </Window.Resources>
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="img/syncBackground3.png"/>
+        </Grid.Background>
+        <!--Loaded="ServerFileListBox_Loaded"-->
+        <ListBox Name="ServerFileListBox"  SelectionMode="Multiple" Background="#F9FFFFFF" HorizontalAlignment="Left" Height="318" Margin="41,83,0,0" VerticalAlignment="Top" Width="283">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Background" Value="Red" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <!--Loaded="LocalFileListBox_Loaded"-->
+        <ListBox Name="LocalFileListBox" SelectionMode="Multiple" Background="#F9FFFFFF" HorizontalAlignment="Left" Height="318" Margin="330,83,0,0" VerticalAlignment="Top" Width="283">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Background" Value="Red"  />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        
+        <Button Click="SyncOKbutton_Click" Style="{StaticResource MyButton}" HorizontalAlignment="Left" Margin="538,405,0,-29" VerticalAlignment="Top" Width="86" Height="35" BorderBrush="#00CCCCCC">
+            <Button.Background>
+                <ImageBrush ImageSource="img/saveButton.png"/>
+            </Button.Background>
+        </Button>
+
+
+    </Grid>
+</Controls:MetroWindow>

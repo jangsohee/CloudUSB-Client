@@ -1,0 +1,56 @@
+﻿<Controls:MetroWindow x:Class="CloudUSB.LoginView"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login"  
+        Height="441" Width="376" MinHeight="441" MinWidth="376" 
+        ShowTitleBar="False"
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ShowMinButton="False" 
+        ShowMaxRestoreButton="False" ShowSystemMenuOnRightClick="False" ResizeMode="NoResize" Closing="LoginView_Closing" >
+
+    <Window.Resources>
+        <!--setting btn mouse over-->
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--setting btn mouse over-->
+
+
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="img/loginPage.png"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Controls:TextBoxHelper.Watermark="ID"  Controls:TextBoxHelper.ClearTextButton="True" VerticalContentAlignment="Center" FontSize="15" Name="id_box" HorizontalAlignment="Left" Width="258" Height="37" Margin="57,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  RenderTransformOrigin="0.5,0.5"/>
+        <PasswordBox Controls:TextBoxHelper.Watermark="Password" Controls:TextBoxHelper.ClearTextButton="True" VerticalContentAlignment="Center" FontSize="15" Name="pw_box" HorizontalAlignment="Left" Margin="57,245,0,0" VerticalAlignment="Top" Width="258" Height="37"/>
+        <Button Style="{StaticResource MyButton}" HorizontalAlignment="Left" Margin="177,333,0,0" VerticalAlignment="Top" Width="68" Height="34"  Click="btnLogin_Click" RenderTransformOrigin="0.553,0.426" BorderBrush="White">
+            <Button.Background>
+                <ImageBrush ImageSource="img/loginButton.png"/>
+            </Button.Background>
+        </Button>
+        <Button Style="{StaticResource MyButton}" HorizontalAlignment="Left" Margin="245,333,0,0" Width="82" Height="34"  VerticalAlignment="Top" BorderThickness="0" RenderTransformOrigin="0.579,0.44" Click="signUp_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="img/signUp.png"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Controls:MetroWindow>

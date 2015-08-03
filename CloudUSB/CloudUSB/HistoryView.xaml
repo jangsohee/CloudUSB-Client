@@ -1,0 +1,19 @@
+﻿<Controls:MetroWindow x:Class="CloudUSB.HistoryView"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="히스토리"  Closing="History_Closing"        
+        ShowTitleBar="False" WindowTransitionsEnabled="False"
+        Height="520" Width="450" MinHeight="520" MinWidth="450" 
+                      WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ShowMinButton="False" 
+        ShowMaxRestoreButton="False" ShowSystemMenuOnRightClick="False"  ResizeMode="NoResize" >
+    <Controls:MetroWindow.Background>
+        <ImageBrush ImageSource="img/HistoryBackground.png" />
+    </Controls:MetroWindow.Background>
+
+
+        <Grid>
+        <ListBox HorizontalAlignment="Left" Height="420" Margin="14,84,0,-13" VerticalAlignment="Top" Width="424" RenderTransformOrigin="0.15,0.405"/>
+
+    </Grid>
+</Controls:MetroWindow>
