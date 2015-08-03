@@ -47,6 +47,9 @@ namespace CloudUSB
         public Entry entry;
         public RequestManager Request;
         FileSystemWatcher watcher;
+
+        public static bool IsWindowOpened { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -54,8 +57,8 @@ namespace CloudUSB
             ImageSourceConverter c = new ImageSourceConverter();
             folderIcon = (ImageSource)c.ConvertFrom("pack://application:,,,/img/folderImage.png");
             entry = new Entry();
-            Request = new RequestManager();
-            watcher = new FileSystemWatcher();
+            //Request = new RequestManager();
+            //watcher = new FileSystemWatcher();
         }
 
         public void run()
@@ -631,7 +634,7 @@ namespace CloudUSB
 
                 
                 defaultPath = File.ReadAllText(@"./SaveDefaultPath.txt");
-                run();
+                //run();
                 Refresh(defaultPath);
             }
             else

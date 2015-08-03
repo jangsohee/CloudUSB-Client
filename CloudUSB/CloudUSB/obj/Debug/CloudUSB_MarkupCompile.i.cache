@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Sohee\workspace\CloudUSB-Client\CloudUSB\CloudUSB\obj\Debug\
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\CloudUSB\obj\Debug\
 CloudUSB
 none
 false
 DEBUG;TRACE
-C:\Users\Sohee\workspace\CloudUSB-Client\CloudUSB\CloudUSB\App.xaml
-81238714510
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\CloudUSB\App.xaml
+13-70374214
 
-2115008397
-27-495458471
-CollisionView.xaml;HistoryView.xaml;JoinView.xaml;LoginView.xaml;MainWindow.xaml;Resources\Icons.xaml;settingView.xaml;TagView.xaml;
+21-453451411
+25-2072575189
+CollisionView.xaml;HistoryView.xaml;JoinView.xaml;LoginView.xaml;MainWindow.xaml;Resources\Icons.xaml;settingView.xaml;TagView.xaml;Themes\Metro\Metro.MSControls.Core.Implicit.xaml;Themes\Metro\Metro.MSControls.Toolkit.Implicit.xaml;Themes\Metro\Styles.Shared.xaml;Themes\Metro\Styles.WPF.xaml;Themes\Metro\Theme.Colors.xaml;
 
 False
 

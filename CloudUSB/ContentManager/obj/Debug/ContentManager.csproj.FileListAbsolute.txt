@@ -33,3 +33,9 @@ C:\Users\철표\Desktop\CloudUSB_Last\ContentManager\bin\Debug\Newtonsoft.Json.x
 C:\Users\철표\Desktop\CloudUSB_Last\ContentManager\obj\Debug\ContentManager.csprojResolveAssemblyReference.cache
 C:\Users\철표\Desktop\CloudUSB_Last\ContentManager\obj\Debug\ContentManager.dll
 C:\Users\철표\Desktop\CloudUSB_Last\ContentManager\obj\Debug\ContentManager.pdb
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\ContentManager\bin\Debug\ContentManager.dll
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\ContentManager\bin\Debug\ContentManager.pdb
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\ContentManager\bin\Debug\Newtonsoft.Json.dll
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\ContentManager\obj\Debug\ContentManager.csprojResolveAssemblyReference.cache
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\ContentManager\obj\Debug\ContentManager.dll
+D:\Project\SSM\TypeA\CloudUsb-Client\CloudUSB\ContentManager\obj\Debug\ContentManager.pdb
