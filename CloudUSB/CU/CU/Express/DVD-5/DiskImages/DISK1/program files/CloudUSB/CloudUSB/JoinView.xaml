@@ -1,0 +1,54 @@
+﻿<Controls:MetroWindow x:Class="CloudUSB.JoinView"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Join"  
+       Height="441" Width="376" MinHeight="441" MinWidth="376" 
+        ShowTitleBar="False"  WindowStartupLocation="CenterScreen" 
+        Closing="joinView_Closing" ShowInTaskbar="False" ShowMinButton="False" ShowMaxRestoreButton="False" WindowTransitionsEnabled="False"
+                 ShowSystemMenuOnRightClick="False" ResizeMode="NoResize">
+    
+        <Window.Resources>       
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--setting btn mouse over-->
+
+
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="img/joinUs.png"/>
+    </Window.Background>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/joinUs.png"/>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Button Style="{StaticResource MyButton}" Click="joinBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,349,0,0" Width="82" Height="34" RenderTransformOrigin="0.553,0.426" BorderBrush="White">
+            <Button.Background>
+                <ImageBrush ImageSource="img/joinBtn.png"/>
+            </Button.Background>
+        </Button>
+        <TextBox Controls:TextBoxHelper.Watermark="ID" Controls:TextBoxHelper.ClearTextButton="True" Name="joinIdBox" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Width="258" Height="37" Margin="57,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <PasswordBox Controls:TextBoxHelper.Watermark="Password" Controls:TextBoxHelper.ClearTextButton="True" Name="joinPwBox" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left"  Margin="57,230,0,0" VerticalAlignment="Top" Width="258" Height="37"/>
+        <TextBox Controls:TextBoxHelper.Watermark="Name" Controls:TextBoxHelper.ClearTextButton="True" Name="joinNameBox" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left"  Margin="57,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" Height="37"/>
+    </Grid>
+</Controls:MetroWindow>

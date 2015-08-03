@@ -1,0 +1,25 @@
+﻿<Controls:MetroWindow x:Class="CloudUSB.TagView"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tag" Icon="img/tagIcon.png"   
+        Height="441" Width="224" MinHeight="441" MinWidth="276" WindowStartupLocation="CenterScreen" 
+        Closing="tagView_Closing" ShowInTaskbar="False" 
+        ShowMinButton="False" ShowMaxRestoreButton="False" 
+        ShowSystemMenuOnRightClick="False" ResizeMode="NoResize">
+    
+    <Grid>
+        <TextBox Controls:TextBoxHelper.Watermark="태그를 입력해주세요" Controls:TextBoxHelper.ClearTextButton="True" Name="tagName"  HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+        <Button  Content="Save" HorizontalAlignment="Left"  Margin="185,11,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.853,0.52" Click="tagSaveBtn_Click"/>
+        <ListBox Name="tagListBox" MouseDown="tagListBox_MouseDown" ContextMenu="{DynamicResource tagContextMenu}"  Background="Azure" Margin="10,41,10,10" 
+                 ContextMenuOpening="tagViewContextMenu">
+            <ListBox.Resources>
+                <ContextMenu x:Key="tagContextMenu" Visibility="Collapsed">
+                    <MenuItem Header="태그삭제" Click="tagRemove_Click"/>
+                </ContextMenu>
+            </ListBox.Resources>
+        </ListBox>
+    </Grid>
+
+
+</Controls:MetroWindow>
