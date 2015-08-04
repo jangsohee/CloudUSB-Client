@@ -21,6 +21,7 @@ using System.Windows.Input;
 using MahApps.Metro.Controls.Dialogs;
 using System.Net;
 using System.Web;
+using System.Management;
 
 
 
@@ -32,6 +33,8 @@ namespace CloudUSB
     public partial class MainWindow : MetroWindow
     {
         ObservableCollection<FileData> myFilesList = new ObservableCollection<FileData>();
+
+
         //public string defaultPath = "C:\\Users\\Sohee\\Desktop\\Test"; 디폴트경로작업중
         public string defaultPath = "";
         public bool isLogin = false; //로그인<->로그아웃 버튼 변경을 위한 flag
@@ -57,6 +60,13 @@ namespace CloudUSB
             ImageSourceConverter c = new ImageSourceConverter();
             folderIcon = (ImageSource)c.ConvertFrom("pack://application:,,,/img/folderImage.png");
             entry = new Entry();
+            
+            ManagementObjectSearcher theSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive WHERE InterfaceType='USB'");
+            foreach (ManagementObject currentObject in theSearcher.Get())
+            {
+                ManagementObject theSerialNumberObjectQuery = new ManagementObject("Win32_PhysicalMedia.Tag='" + currentObject["DeviceID"] + "'");
+                MessageBox.Show(theSerialNumberObjectQuery["SerialNumber"].ToString());
+            }
             //Request = new RequestManager();
             //watcher = new FileSystemWatcher();
         }
